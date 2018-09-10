@@ -1,0 +1,22 @@
+<h1>BITCHIN' YOUTUBE SHUFFLER</h1>
+
+<p><b>Title:</b></p>
+<%# @title %>
+<br/><br/>
+
+<p><b>Video Count:</b></p>
+<%# @count %>
+<br/><br/>
+
+<p><b>Video Playing:</b></p>
+<%# @video.title %>
+<br/>
+<p>Position:</p>
+<%# @rand_vid.position %>
+<p>ID:</p>
+<%# @video.id %>
+
+<br/><br/>
+<iframe src="https://www.youtube.com/embed/<%= @video.id %>?autoplay=1" frameborder='0' allow="autoplay; encrypted-media" allowfullscreen></iframe>'
+
+<iframe frameborder="0" allow="autoplay; encrypted-media" allowfullscreen src="https://www.youtube.com/embed/TOKHdJO_u2A?autoplay=1&mute=1"></iframe>
