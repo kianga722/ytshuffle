@@ -1,0 +1,45 @@
+<h1>BITCHIN' YOUTUBE SHUFFLER</h1>
+<%= link_to "Home", root_path %>
+
+<p><b>Playlist Title:</b></p>
+<%= @title %>
+<br/><br/>
+
+<p><b>Video Count:</b></p>
+<%= @count %>
+<br/><br/>
+
+<p><b>Video Playing:</b></p>
+<%= @video.title %>
+<br/>
+<p><b>Position:</b></p>
+<%= @rand_vid[1] %>
+<br/><br/>
+
+<iframe id="existing-iframe-example" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen src="https://www.youtube.com/embed/<%= @video.id %>?autoplay=1&enablejsapi=1"></iframe>
+
+<script type ="text/javascript">
+    var player;
+    function onYouTubeIframeAPIReady() {
+        player = new YT.Player('existing-iframe-example', {
+            events: {
+                'onStateChange': onPlayerStateChange
+            }
+        });
+    }
+    function onPlayerStateChange(event) {
+        if(event.data === 0) {
+            alert(penis);
+        }
+    }
+</script>
+
+<span>
+<%= form_tag("/shuffle", method: :post) do %>
+    <%= hidden_field_tag("title", @title) %>
+    <%= hidden_field_tag("count", @count) %>
+    <%= hidden_field_tag("list", JSON.dump(@list)) %>
+    <%= hidden_field_tag("goodlist", JSON.dump(@goodlist)) %>
+    <%= submit_tag("Skip") %>
+<% end %>
+</span>

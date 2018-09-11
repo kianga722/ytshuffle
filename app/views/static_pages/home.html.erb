@@ -1,17 +1,8 @@
 <h1>BITCHIN' YOUTUBE SHUFFLER</h1>
+<%= link_to "Home", root_path %>
 
-<p><b>Title:</b></p>
-<%# @title %>
-<br/><br/>
-
-<p><b>Video Count:</b></p>
-<%# @count %>
-<br/><br/>
-
-<p><b>Video Playing:</b></p>
-<%# @video.title %>
-<br/>
-<p>Position:</p>
-<%# @rand_vid.position %>
-<p>ID:</p>
-<iframe frameborder="0" allow="autoplay; encrypted-media" allowfullscreen src="https://www.youtube.com/embed/<%= @video.id %>?autoplay=1"></iframe>
+<p><b>Type in Playlist ID below:</b></p>
+<%= form_tag("/shuffle", method: "get") do %>
+    <%= text_field_tag(:list_id, placeholder="UU4rasfm9J-X4jNl9SvXp8xA") %>
+    <%= submit_tag("Shuffle!") %>
+<% end %>
