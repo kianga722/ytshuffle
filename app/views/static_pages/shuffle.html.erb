@@ -1,14 +1,17 @@
 <h1>BITCHIN' YOUTUBE SHUFFLER</h1>
 <%= link_to "Home", root_path %>
 
-<p><b>Playlist Title:</b></p>
-<%= @title %>
-<br/>
-<p><b>Total # of Videos:</b></p>
-<%= @count %>
-<br/><br/>
+<br><br>
 
-<p><b>Previous Videos Played (Most Recent at Top):</b></p>
+<div><b>Playlist Title:</b></div>
+<%= @title %>
+
+
+<div><b>Total # of Videos:</b></div>
+<%= @count %>
+<br><br>
+
+<div><b>Previous Videos Played (Most Recent at Top):</b></div>
 <% unless @first %>
     <% @last = @recent.count - 1 %>  
     <% @rec = @recent[0,@last] %>
@@ -16,19 +19,20 @@
         <div><%= r %></div>
     <% end %>
 <% end %>
-<br/><br/>
 
-<p><b>Video Title:</b></p>
+<br>
+
+<div><b>Video Title:</b></div>
 <%= @video.title %>
-<br/>
-<p><b>Length of Video:</b></p>
+<br>
+<div><b>Length of Video:</b></div>
 <%= Time.at(@video.duration).utc.strftime("%M:%S") %>
-<p><b>Position in Queue (1 being most recent):</b></p>
+<div><b>Position in Queue (1 being most recent):</b></div>
 <%= @rand_vid[1] %>
-<br/>
-<p><b>Date Uploaded:</b></p>
+<br>
+<div><b>Date Uploaded:</b></div>
 <%= @video.published_at %>
-<br/><br/>
+<br><br>
 
 <iframe width="250" height="250" id="existing-iframe-example" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen src="https://www.youtube.com/embed/<%= @video.id %>?autoplay=1&enablejsapi=1"></iframe>
 
@@ -60,7 +64,7 @@
     function onPlayerError() {
         $('#next').submit();
     }
-    
+
 </script>
 
 <span>
