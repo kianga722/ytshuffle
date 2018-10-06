@@ -8,9 +8,14 @@ class StaticPagesController < ApplicationController
     
     #Only create playlist the first time
     @list = JSON.load(params[:list])
+    @recent = JSON.load(params[:recent])
 
     unless @list
+      @first = true
+
       @goodlist = []
+      @recent = []
+
       @playlist = Yt::Playlist.new id: "#{params[:list_id]}"
       @title = @playlist.title
       @list = @playlist.playlist_items
@@ -20,15 +25,34 @@ class StaticPagesController < ApplicationController
       @list.take(@count).each do |i|
         @goodlist << [i.title, i.position, i.video_id]  
       end
+
+      rand_gen(@goodlist)
+
     else
+      @first = false
+
       @goodlist = JSON.load(params[:goodlist])
+      @recent = JSON.load(params[:recent])
       @title = params[:title]
       @count = params[:count]
+
+      rand_gen(@goodlist)
+
     end
 
-    @rand_vid = @goodlist.sample
-
-    @video = Yt::Video.new id: "#{@rand_vid[2]}"
   end
+
+
+private 
+
+  def rand_gen(goodlist)
+    @rand_vid = goodlist.sample
+    @video = Yt::Video.new id: "#{@rand_vid[2]}"
+
+    #Last 5 recent videos
+    @recent << @video.title
+    @recent.shift if @recent.count > 6
+  end
+
 
 end

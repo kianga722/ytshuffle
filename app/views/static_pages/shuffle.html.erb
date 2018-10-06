@@ -3,10 +3,19 @@
 
 <p><b>Playlist Title:</b></p>
 <%= @title %>
-<br/><br/>
-
+<br/>
 <p><b>Total # of Videos:</b></p>
 <%= @count %>
+<br/><br/>
+
+<p><b>Previous Videos Played (Most Recent at Top):</b></p>
+<% unless @first %>
+    <% @last = @recent.count - 1 %>  
+    <% @rec = @recent[0,@last] %>
+    <% @rec.reverse.each do |r| %>
+        <div><%= r %></div>
+    <% end %>
+<% end %>
 <br/><br/>
 
 <p><b>Video Title:</b></p>
@@ -16,7 +25,7 @@
 <%= Time.at(@video.duration).utc.strftime("%M:%S") %>
 <p><b>Position in Queue (1 being most recent):</b></p>
 <%= @rand_vid[1] %>
-<br/><br/>
+<br/>
 <p><b>Date Uploaded:</b></p>
 <%= @video.published_at %>
 <br/><br/>
@@ -49,10 +58,12 @@
 
 <span>
 <%= form_tag("/shuffle", method: :post, id: "next") do %>
+    <%= hidden_field_tag("first", @first) %>
     <%= hidden_field_tag("title", @title) %>
     <%= hidden_field_tag("count", @count) %>
     <%= hidden_field_tag("list", JSON.dump(@list)) %>
     <%= hidden_field_tag("goodlist", JSON.dump(@goodlist)) %>
+    <%= hidden_field_tag("recent", JSON.dump(@recent)) %>
     <%= submit_tag("Skip") %>
 <% end %>
 </span>
