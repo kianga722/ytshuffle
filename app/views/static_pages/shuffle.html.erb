@@ -45,15 +45,22 @@
     function onYouTubeIframeAPIReady() {
         player = new YT.Player('existing-iframe-example', {
             events: {
-                'onStateChange': onPlayerStateChange
+                'onStateChange': onPlayerStateChange,
+                'onError': onPlayerError
             }
         });
     }
+
     function onPlayerStateChange(event) {
         if(event.data === 0) {
             $('#next').submit();
         }
     }
+
+    function onPlayerError() {
+        $('#next').submit();
+    }
+    
 </script>
 
 <span>
