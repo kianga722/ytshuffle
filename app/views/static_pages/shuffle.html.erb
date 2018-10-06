@@ -5,18 +5,23 @@
 <%= @title %>
 <br/><br/>
 
-<p><b>Video Count:</b></p>
+<p><b>Total # of Videos:</b></p>
 <%= @count %>
 <br/><br/>
 
-<p><b>Video Playing:</b></p>
+<p><b>Video Title:</b></p>
 <%= @video.title %>
 <br/>
-<p><b>Position:</b></p>
+<p><b>Length of Video:</b></p>
+<%= Time.at(@video.duration).utc.strftime("%M:%S") %>
+<p><b>Position in Queue (1 being most recent):</b></p>
 <%= @rand_vid[1] %>
 <br/><br/>
+<p><b>Date Uploaded:</b></p>
+<%= @video.published_at %>
+<br/><br/>
 
-<iframe id="existing-iframe-example" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen src="https://www.youtube.com/embed/<%= @video.id %>?autoplay=1&enablejsapi=1"></iframe>
+<iframe width="250" height="250" id="existing-iframe-example" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen src="https://www.youtube.com/embed/<%= @video.id %>?autoplay=1&enablejsapi=1"></iframe>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 

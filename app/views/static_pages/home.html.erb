@@ -3,6 +3,27 @@
 
 <p><b>Type in Playlist ID below:</b></p>
 <%= form_tag("/shuffle", method: "get") do %>
+    <%= text_field_tag(:list_id, placeholder="PL1npbiMVKM7exuHWdwDBaZ-Hj9k1pPuNM") %>
+    <%= submit_tag("Shuffle!") %>
+<% end %>
+
+
+<h2>Popular Playlists</h2>
+
+<p><b>Proximity</b></p>
+<%= form_tag("/shuffle", method: "get") do %>
+    <%= text_field_tag(:list_id, placeholder="UU3ifTl5zKiCAhHIBQYcaTeg") %>
+    <%= submit_tag("Shuffle!") %>
+<% end %>
+
+<p><b>Ultra Music</b></p>
+<%= form_tag("/shuffle", method: "get") do %>
     <%= text_field_tag(:list_id, placeholder="UU4rasfm9J-X4jNl9SvXp8xA") %>
+    <%= submit_tag("Shuffle!") %>
+<% end %>
+
+<p><b>Spinnin' Records</b></p>
+<%= form_tag("/shuffle", method: "get") do %>
+    <%= text_field_tag(:list_id, placeholder="UUpDJl2EmP7Oh90Vylx0dZtA") %>
     <%= submit_tag("Shuffle!") %>
 <% end %>
