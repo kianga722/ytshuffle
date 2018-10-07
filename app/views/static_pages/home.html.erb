@@ -1,32 +1,49 @@
-<h1>BITCHIN' YOUTUBE SHUFFLER</h1>
-<%= link_to "Home", root_path %>
+<header class="home-header">
+    <div class="title">
+        BITCHIN' YOUTUBE SHUFFLER
+    </div>
+    <div class="home-link">
+        <%= link_to "Home", root_path %>
+    </div>
+</header>
 
-<br><br>
+<div class="container-fluid">
 
-<div><b>Type in Playlist ID below:</b></div>
-<%= form_tag("/shuffle", method: "get") do %>
-    <%= text_field_tag(:list_id, placeholder="PL1npbiMVKM7exuHWdwDBaZ-Hj9k1pPuNM") %>
-    <%= submit_tag("Shuffle!") %>
-<% end %>
+    <div class="row">
 
-<br>
+        <div class="col-sm-6 main-type">
+            <b>Type in Playlist ID below:</b>
 
-<h2>Popular Playlists</h2>
+            <%= form_tag("/shuffle", method: "get") do %>
+                <%= text_field_tag(:list_id, placeholder="PL1npbiMVKM7exuHWdwDBaZ-Hj9k1pPuNM") %>
+                <%= submit_tag("Shuffle!") %>
+            <% end %>
+        </div>
 
-<div><b>Proximity</b></div>
-<%= form_tag("/shuffle", method: "get") do %>
-    <%= text_field_tag(:list_id, placeholder="UU3ifTl5zKiCAhHIBQYcaTeg") %>
-    <%= submit_tag("Shuffle!") %>
-<% end %>
 
-<div><b>Ultra Music</b></div>
-<%= form_tag("/shuffle", method: "get") do %>
-    <%= text_field_tag(:list_id, placeholder="UU4rasfm9J-X4jNl9SvXp8xA") %>
-    <%= submit_tag("Shuffle!") %>
-<% end %>
+        <div class="col-sm-6">
+            <div class="try">
+                Try one of these Popular Playlists!
+            </div>
 
-<div><b>Spinnin' Records</b></div>
-<%= form_tag("/shuffle", method: "get") do %>
-    <%= text_field_tag(:list_id, placeholder="UUpDJl2EmP7Oh90Vylx0dZtA") %>
-    <%= submit_tag("Shuffle!") %>
-<% end %>
+            <div><b>Proximity</b></div>
+            <%= form_tag("/shuffle", method: "get") do %>
+                <%= text_field_tag(:list_id, placeholder="UU3ifTl5zKiCAhHIBQYcaTeg") %>
+                <%= submit_tag("Shuffle!") %>
+            <% end %>
+
+            <div><b>Ultra Music</b></div>
+            <%= form_tag("/shuffle", method: "get") do %>
+                <%= text_field_tag(:list_id, placeholder="UU4rasfm9J-X4jNl9SvXp8xA") %>
+                <%= submit_tag("Shuffle!") %>
+            <% end %>
+
+            <div><b>Spinnin' Records</b></div>
+            <%= form_tag("/shuffle", method: "get") do %>
+                <%= text_field_tag(:list_id, placeholder="UUpDJl2EmP7Oh90Vylx0dZtA") %>
+                <%= submit_tag("Shuffle!") %>
+            <% end %>
+        </div>
+
+    </div>
+</div>

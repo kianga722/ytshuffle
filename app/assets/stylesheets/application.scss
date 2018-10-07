@@ -15,3 +15,93 @@
  @import "bootstrap";
 
 
+/*
+General Styling
+*/
+
+a:hover {
+    text-decoration: none;
+}
+
+a:hover,
+input[type=submit]:hover {
+    color: #fff !important;
+    font-weight: 700;
+}
+
+
+/*
+Header Styling
+*/
+
+.home-header {
+    margin-bottom: 10px;
+    padding: 5px 15px 15px 15px;
+
+    color: #fff;
+    background-color: #000;
+}
+
+.home-header .title {
+    margin-bottom: 5px;
+
+    font-size: 2.2rem;
+}
+
+.home-link a {
+    border: 1px solid yellow;
+    border-radius: 8px;
+    padding: 10px;
+
+    color: rgb(65, 55, 55);
+    background-color: #27bbb9;
+    text-transform: uppercase;
+}
+
+/*
+Home Page Styling
+*/
+
+.main-type {
+    margin-bottom: 25px;
+}
+
+form {
+    margin-bottom: 15px;
+}
+
+.try {
+    margin-bottom: 15px;
+
+    color: #8e2045;
+    font-size: 1.3rem; 
+}
+
+input[type=submit] {
+    border-radius: 32px;
+    padding: 8px;
+
+    border: 1px solid yellow;
+    color: #3a7b93;
+    background-color: #e3a0b5;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+/*
+Shuffle Page Styling
+*/
+
+.col-shuffle {
+    padding-top: 20px;
+
+    border-top: 5px solid pink;
+}
+
+.previous {
+    margin-bottom: 1rem;
+}
+
+.current-vid {
+    border: 2px solid blue;
+}

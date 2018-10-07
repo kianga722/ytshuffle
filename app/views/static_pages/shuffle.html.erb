@@ -1,80 +1,113 @@
-<h1>BITCHIN' YOUTUBE SHUFFLER</h1>
-<%= link_to "Home", root_path %>
+<header class="home-header">
+    <div class="title">
+        BITCHIN' YOUTUBE SHUFFLER
+    </div>
+    <div class="home-link">
+        <%= link_to "Home", root_path %>
+    </div>
+</header>
 
-<br><br>
+<div class="container-fluid">
 
-<div><b>Playlist Title:</b></div>
-<%= @title %>
+    <div class="row">
 
+        <div class="col-sm-6 col-shuffle">
+            <p>
+                <b>Playlist Title:</b>
+                <br>
+                <%= @title %>
+            </p>
 
-<div><b>Total # of Videos:</b></div>
-<%= @count %>
-<br><br>
+            <p>
+                <b>Total # of Videos:</b>
+                <br>
+                <%= @count %>
+            </p>
+        </div>
 
-<div><b>Previous Videos Played (Most Recent at Top):</b></div>
-<% unless @first %>
-    <% @last = @recent.count - 1 %>  
-    <% @rec = @recent[0,@last] %>
-    <% @rec.reverse.each do |r| %>
-        <div><%= r %></div>
-    <% end %>
-<% end %>
+        <div class="col-sm-6 col-shuffle previous">
+                <b>Previous Videos Played (Most Recent at Top):</b>
+                <% unless @first %>
+                    <% @last = @recent.count - 1 %>  
+                    <% @rec = @recent[0,@last] %>
+                    <% @rec.reverse.each do |r| %>
+                        <div><%= r %></div>
+                    <% end %>
+                <% end %>
+        </div>
+    
+    </div>
 
-<br>
+    <div class="row">
 
-<div><b>Video Title:</b></div>
-<%= @video.title %>
-<br>
-<div><b>Length of Video:</b></div>
-<%= Time.at(@video.duration).utc.strftime("%M:%S") %>
-<div><b>Position in Queue (1 being most recent):</b></div>
-<%= @rand_vid[1] %>
-<br>
-<div><b>Date Uploaded:</b></div>
-<%= @video.published_at %>
-<br><br>
+        <div class="col-sm-6 col-shuffle">
+            <p class="current-vid">
+                <b>Current Video:</b>
+                <br>
+                <%= @video.title %>
+            </p>
+            <p>
+                <b>Length of Video:</b>
+                <br>
+                <%= Time.at(@video.duration).utc.strftime("%M:%S") %>
+            </p>
+            <p>
+                <b>Position in Queue (1 being most recent):</b>
+                <br>
+                <%= @rand_vid[1] %>
+            </p>
+            <p>            
+                <b>Date Uploaded:</b>
+                <br>
+                <%= @video.published_at %>
+            </p>
+        </div>
 
-<iframe width="250" height="250" id="existing-iframe-example" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen src="https://www.youtube.com/embed/<%= @video.id %>?autoplay=1&enablejsapi=1"></iframe>
+        <div class="col-sm-6 col-shuffle">
+            <iframe width="350" height="250" id="existing-iframe-example" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen src="https://www.youtube.com/embed/<%= @video.id %>?autoplay=1&enablejsapi=1"></iframe>
+        
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+            <%= form_tag("/shuffle", method: :post, id: "next") do %>
+                <%= hidden_field_tag("first", @first) %>
+                <%= hidden_field_tag("title", @title) %>
+                <%= hidden_field_tag("count", @count) %>
+                <%= hidden_field_tag("list", JSON.dump(@list)) %>
+                <%= hidden_field_tag("goodlist", JSON.dump(@goodlist)) %>
+                <%= hidden_field_tag("recent", JSON.dump(@recent)) %>
+                <%= submit_tag("Skip") %>
+            <% end %>
+        </div>
 
-<script type ="text/javascript">
-    var tag = document.createElement('script');
+    </div>
+</div>
 
-    tag.src = "https://www.youtube.com/iframe_api";
-    var firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 
-    var player;
-    function onYouTubeIframeAPIReady() {
-        player = new YT.Player('existing-iframe-example', {
-            events: {
-                'onStateChange': onPlayerStateChange,
-                'onError': onPlayerError
+        <script type ="text/javascript">
+            var tag = document.createElement('script');
+
+            tag.src = "https://www.youtube.com/iframe_api";
+            var firstScriptTag = document.getElementsByTagName('script')[0];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+            var player;
+            function onYouTubeIframeAPIReady() {
+                player = new YT.Player('existing-iframe-example', {
+                    events: {
+                        'onStateChange': onPlayerStateChange,
+                        'onError': onPlayerError
+                    }
+                });
             }
-        });
-    }
 
-    function onPlayerStateChange(event) {
-        if(event.data === 0) {
-            $('#next').submit();
-        }
-    }
+            function onPlayerStateChange(event) {
+                if(event.data === 0) {
+                    $('#next').submit();
+                }
+            }
 
-    function onPlayerError() {
-        $('#next').submit();
-    }
+            function onPlayerError() {
+                $('#next').submit();
+            }
 
-</script>
-
-<span>
-<%= form_tag("/shuffle", method: :post, id: "next") do %>
-    <%= hidden_field_tag("first", @first) %>
-    <%= hidden_field_tag("title", @title) %>
-    <%= hidden_field_tag("count", @count) %>
-    <%= hidden_field_tag("list", JSON.dump(@list)) %>
-    <%= hidden_field_tag("goodlist", JSON.dump(@goodlist)) %>
-    <%= hidden_field_tag("recent", JSON.dump(@recent)) %>
-    <%= submit_tag("Skip") %>
-<% end %>
-</span>
+        </script>
