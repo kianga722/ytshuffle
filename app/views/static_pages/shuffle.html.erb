@@ -18,13 +18,15 @@
 
         <div class="col-sm-6 col-shuffle previous">
                 <b>Previous Videos Played (Most Recent at Top):</b>
+                <ul>
                 <% unless @first %>
                     <% @last = @recent.count - 1 %>  
                     <% @rec = @recent[0,@last] %>
                     <% @rec.reverse.each do |r| %>
-                        <div><%= r %></div>
+                        <li><%= r %></li>
                     <% end %>
                 <% end %>
+                </ul>
         </div>
     
     </div>
