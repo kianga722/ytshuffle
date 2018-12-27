@@ -67,6 +67,7 @@
                 <%= hidden_field_tag("list", JSON.dump(@list)) %>
                 <%= hidden_field_tag("goodlist", JSON.dump(@goodlist)) %>
                 <%= hidden_field_tag("recent", JSON.dump(@recent)) %>
+                <%= hidden_field_tag("repeat", @repeat) %>
                 <%= submit_tag("Skip") %>
             <% end %>
         </div>

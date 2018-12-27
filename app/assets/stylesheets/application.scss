@@ -81,6 +81,15 @@ form {
     font-size: 1.3rem; 
 }
 
+.checkbox {
+    display: flex;
+    align-items: center;
+}
+
+.repeat-title {
+    margin-left: 5px;
+}
+
 input[type=submit] {
     border-radius: 32px;
     padding: 8px;
