@@ -88,10 +88,15 @@
             function onYouTubeIframeAPIReady() {
                 player = new YT.Player('existing-iframe-example', {
                     events: {
+                        'onReady': onPlayerReady,
                         'onStateChange': onPlayerStateChange,
                         'onError': onPlayerError
                     }
                 });
+            }
+
+            function onPlayerReady(event) {
+                event.target.playVideo();
             }
 
             function onPlayerStateChange(event) {
