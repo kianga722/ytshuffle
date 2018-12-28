@@ -5,7 +5,7 @@
         <div class="col-sm-6 main-type">
             <b>Type in Playlist ID below:</b>
 
-            <%= form_tag("/shuffle", method: :post) do %>
+            <%= form_tag("/shuffle", method: :post, id: 'any') do %>
                 <%= text_field_tag(:list_id, placeholder="PL1npbiMVKM7exuHWdwDBaZ-Hj9k1pPuNM") %>
                 <%= submit_tag("Shuffle!") %>
                 <%= render 'checkbox' %>
@@ -19,21 +19,21 @@
             </div>
 
             <div><b>Thrilling Music</b></div>
-            <%= form_tag("/shuffle", method: :post) do %>
+            <%= form_tag("/shuffle", method: :post, id: 'thrilling') do %>
                 <%= text_field_tag(:list_id, placeholder="UUh_Ob9q_Tf7-7Opf_6YvaKw") %>
                 <%= submit_tag("Shuffle!") %>
                 <%= render 'checkbox' %>
             <% end %>
 
             <div><b>Proximity</b></div>
-            <%= form_tag("/shuffle", method: :post) do %>
+            <%= form_tag("/shuffle", method: :post, id: 'proximity') do %>
                 <%= text_field_tag(:list_id, placeholder="UU3ifTl5zKiCAhHIBQYcaTeg") %>
                 <%= submit_tag("Shuffle!") %>
                 <%= render 'checkbox' %>
             <% end %>
 
             <div><b>Ultra Music</b></div>
-            <%= form_tag("/shuffle", method: :post) do %>
+            <%= form_tag("/shuffle", method: :post, id: 'ultra') do %>
                 <%= text_field_tag(:list_id, placeholder="UU4rasfm9J-X4jNl9SvXp8xA") %>
                 <%= submit_tag("Shuffle!") %>
                 <%= render 'checkbox' %>
