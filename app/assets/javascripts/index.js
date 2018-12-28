@@ -35,12 +35,18 @@ function onPlayerError() {
 //Loading Logic Module
 const loadLogic = (() => {
   //Function to hide/unhide elements
-  const showLoad = () => {
+  const showLoad = (show) => {
     const loading = document.querySelector('.loading-wrapper');
     const main = document.querySelector('.main');
 
-    loading.classList.remove('hide');
-    main.classList.add('hide');
+    if (show) {
+        loading.classList.remove('hide');
+        main.classList.add('hide');
+    } else {
+        loading.classList.add('hide');
+        main.classList.remove('hide');
+    }
+
   }
 
   return { showLoad };
@@ -49,7 +55,7 @@ const loadLogic = (() => {
 
 document.addEventListener('turbolinks:load', function() {
     document.body.addEventListener('submit', () => {
-        loadLogic.showLoad();
+        loadLogic.showLoad(true);
     })
 })
 
