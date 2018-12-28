@@ -87,6 +87,11 @@
 
 <script>
     loadLogic.showLoad(false)
+
+    const nextLoad = () => {
+        document.getElementById('next').submit();
+        loadLogic.showLoad(true);
+    }
     
     //YT iFrame API
     var tag = document.createElement('script');
@@ -106,23 +111,31 @@
         });
     }
 
-    console.log(player)
-
     function onPlayerReady(event) {
         event.target.playVideo();
     }
 
     function onPlayerStateChange(event) {
         if (event.data === 0) {
-            document.getElementById('next').submit();
-            loadLogic.showLoad(true);
+            nextLoad();
         }
-
     }
 
     function onPlayerError() {
-        document.getElementById('next').submit();
-        loadLogic.showLoad(true);
+        nextLoad();
     }
+
+    //For Video Unavailable Error
+    iframeYT = document.getElementById('existing-iframe-example')
+    //Wait for a few seconds and see if player is still unstarted
+    iframeYT.addEventListener('load', () => {
+        setTimeout(function() {
+            if (player.j.playerState === -1) {
+                nextLoad();
+            }
+        }, 6900)
+    })
+
+
 
 </script>
