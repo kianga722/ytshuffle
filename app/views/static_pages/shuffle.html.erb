@@ -64,10 +64,17 @@
                 <%= hidden_field_tag("first", @first) %>
                 <%= hidden_field_tag("title", @title) %>
                 <%= hidden_field_tag("count", @count) %>
-                <%= hidden_field_tag("list", JSON.dump(@list)) %>
-                <%= hidden_field_tag("goodlist", JSON.dump(@goodlist)) %>
+                <%= hidden_field_tag("listRepeat", JSON.dump(@listRepeat)) %>
+                <%= hidden_field_tag("listNoRepeat", JSON.dump(@listNoRepeat)) %>
                 <%= hidden_field_tag("recent", JSON.dump(@recent)) %>
-                <%= hidden_field_tag("repeat", @repeat) %>
+                <% if @repeat %>
+                    <div class='checkbox'>
+                        <%= check_box_tag("repeat", 1, true) %>
+                        <span class='repeat-title'>Repeat Songs</span>
+                    </div>
+                <% else %>
+                    <%= render 'checkbox' %>
+                <% end %>
                 <%= submit_tag("Skip") %>
             <% end %>
         </div>

@@ -7,57 +7,68 @@ class StaticPagesController < ApplicationController
     #channel = Yt::Channel.new id: 'UC4rasfm9J-X4jNl9SvXp8xA'
     
     #Only create playlist the first time
-    @list = JSON.load(params[:list])
+    @listRepeat = JSON.load(params[:listRepeat])
     @recent = JSON.load(params[:recent])
 
-    unless @list
-
+    unless @listRepeat
       @first = true
-      @repeat = params[:repeat] ? true : false
-
-      @goodlist = []
+      
+      @listRepeat = []
       @recent = []
 
       @playlist = Yt::Playlist.new id: "#{params[:list_id]}"
       @title = @playlist.title
-      @list = @playlist.playlist_items
-      @count = @list.count
+      list = @playlist.playlist_items
+      @count = list.count
 
       #Make array of video arrays
-      @list.take(@count).each do |i|
-        @goodlist << [i.title, i.position, i.video_id]  
+      list.take(@count).each do |i|
+        @listRepeat << [i.title, i.position, i.video_id]
       end
 
+      @listNoRepeat = @listRepeat
+
     else
-
       @first = false
-      @repeat = params[:repeat] == 'true' ? true : false
 
-      @goodlist = JSON.load(params[:goodlist])
+      @listRepeat = JSON.load(params[:listRepeat])
+      @listNoRepeat = JSON.load(params[:listNoRepeat])
       @recent = JSON.load(params[:recent])
       @title = params[:title]
       @count = params[:count]
-
     end
 
-    @goodlist = rand_gen(@goodlist, @repeat)
+    @repeat = params[:repeat] ? true : false
+
+    @listNoRepeat = rand_gen(@listRepeat, @listNoRepeat, @repeat)
+
+    puts @listNoRepeat.count
 
   end
 
 
 private 
 
-  def rand_gen(goodlist, repeat)
-    newlist = goodlist
-    @rand_vid = newlist.sample
+  def rand_gen(listRepeat, listNoRepeat, repeat)
+    newlist = listNoRepeat
+    if repeat
+      @rand_vid = listRepeat.sample
+    else
+      @rand_vid = newlist.sample
+    end
+
     @video = Yt::Video.new id: "#{@rand_vid[2]}"
 
     #Last 5 recent videos
     @recent << @video.title
     @recent.shift if @recent.count > 6
 
-    newlist.delete(@rand_vid) unless repeat
-    return newlist
+    if repeat
+      return listRepeat
+    else
+      newlist.delete(@rand_vid)
+      return newlist
+    end
   end
 
 
