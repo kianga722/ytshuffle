@@ -41,9 +41,6 @@ class StaticPagesController < ApplicationController
     @repeat = params[:repeat] ? true : false
 
     @listNoRepeat = rand_gen(@listRepeat, @listNoRepeat, @repeat)
-
-    puts @listNoRepeat.count
-
   end
 
 
