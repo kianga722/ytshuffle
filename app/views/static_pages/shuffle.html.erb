@@ -75,7 +75,7 @@
                 <% else %>
                     <%= render 'checkbox' %>
                 <% end %>
-                <%= submit_tag("Skip") %>
+                <%= submit_tag("Skip", class: 'loadTrigger') %>
             <% end %>
 
         </div>
@@ -106,20 +106,23 @@
         });
     }
 
+    console.log(player)
+
     function onPlayerReady(event) {
         event.target.playVideo();
     }
 
     function onPlayerStateChange(event) {
-        if(event.data === 0) {
+        if (event.data === 0) {
             document.getElementById('next').submit();
             loadLogic.showLoad(true);
         }
+
     }
 
-    function onPlayerError(event) {
-        console.log(event.data)
+    function onPlayerError() {
         document.getElementById('next').submit();
         loadLogic.showLoad(true);
     }
+
 </script>

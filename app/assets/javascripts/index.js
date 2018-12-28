@@ -20,11 +20,12 @@ const loadLogic = (() => {
 })();
 
 document.addEventListener('turbolinks:load', function() {
-    const formArr = ['any', 'thrilling', 'proxmity', 'ultra', 'next'];
+    const formArr = ['any', 'thrilling', 'proximity', 'ultra', 'next'];
 
     document.body.addEventListener('click', e => {
         let target = e.target;
-        if (formArr.includes(target.parentNode.id)) {
+        if (target.classList.contains('loadTrigger')
+          &&formArr.includes(target.parentNode.id)) {
             loadLogic.showLoad(true);
         }
     })
