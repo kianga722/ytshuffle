@@ -12,6 +12,6 @@ This is a personal project aiming to shuffle and play a playlist from Youtube
 * Automatically skips playlist items that give errors
 * Able to toggle the repeating of songs
 
-#### Future Improvements
+### Future Improvements
 
 * Have autoplay continue even when minimized or used on mobile devices
