@@ -3,7 +3,7 @@ This is a personal project aiming to shuffle and play a playlist from Youtube
 
 [View App](https://ytshuffle.herokuapp.com)
 
-![screenshot](https://github.com/toptester1/youtube-shuffle/blob/master/public/images/screenshot.jpg)
+![screenshot](https://github.com/kianga722/edmlambo/blob/master/public/images/screenshot.jpg)
 
 ## Summary
 
