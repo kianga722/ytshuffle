@@ -16,3 +16,4 @@ This is a personal project aiming to shuffle and play a playlist from Youtube
 ## Future Improvements
 
 * Have autoplay continue even when minimized or used on mobile devices
+* Improve Repeat Songs checkbox look and location
