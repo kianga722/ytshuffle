@@ -17,7 +17,7 @@ gem 'uglifier', '>= 1.3.0'
 
 gem 'figaro'
 gem 'yt', '~> 0.28.0'
-gem 'bootstrap', '>= 4.1.3'
+gem 'bootstrap', '>= 4.3.1'
 gem 'jquery-rails'
 
 
